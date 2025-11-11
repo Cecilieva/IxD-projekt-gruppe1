@@ -36,7 +36,7 @@ header {
     justify-content: center;
     align-items: center;
     margin: 20px auto;
-    width: 100px;
+    width: 200px;
     z-index: 10;
 }
 
@@ -58,18 +58,190 @@ header {
   width:44px; height:44px; border:none; border-radius:999px;
   background:#fff; color:#222; box-shadow:0 4px 12px rgba(0,0,0,.15);
   display:grid; place-items:center; cursor:pointer;
-  transition:transform .08s ease, box-shadow .2s ease, background .2s;
+  transition:transform .08s ease, box-shadow .2s ease,2s;
 }
 .icon-btn:active{ transform:scale(.96); }
 .icon-btn:focus-visible{ outline:2px solid #000; outline-offset:2px; }
 .icon-btn:hover{ box-shadow:0 6px 16px rgba(0,0,0,.2); }
 
-/* højre to: “inline” ikoner – ingen boble */
+/* højre to: "inline" ikoner – ingen boble */
 .actions-right{ display:flex; align-items:center; gap:14px; color:#222; }
 .icon-inline{
-  background:transparent; border:none; padding:0; cursor:pointer;
+  background:transparent; border:none; padding:20px; cursor:pointer;
   color:#222;
-  
 }
-.icon-inline:focus-visible{ outline:2px solid #000; outline-offset:4px; }
+
+.icon-inline:focus-visible{ outline:10px solid #000; outline-offset:50px; }
 .icon-inline:active svg{ transform:scale(.98); }
+
+.search-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Søgebar container */
+.search-container {
+  position: fixed;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+  animation: slideDown 0.3s ease;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid #1a1919;
+  border-radius: 50px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: white;
+  color: #222;
+}
+
+.search-input:focus {
+  box-shadow: 0 6px 16px rgba(42, 26, 27, 0.3);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:30px 10px 30px;
+  position: relative;        /* vigtigt, så søgefeltet positioneres ift. actions */
+}
+
+/* skjult som default */
+.search-container{
+  position: absolute;
+  top: 10px;                 /* justér hvis den skal tættere på */
+ left: 330px;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+  display: none;
+}
+
+/* vises når vi klikker på 🔍 */
+.search-container.show{
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+/* Karussel */
+.carousel-container {
+  position: relative;
+  max-width: 600px;
+  margin: 30px auto;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 15px;
+  top: 100px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(191, 23, 28, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: #BF171C;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+/* Grid layout kun med billeder */
+.game-grid {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 10px 0;
+}
+
+/* 3 billeder pr. række på mobil */
+.game-grid img {
+  width: 100%;
+  max-width: 180px;  /* giver ens størrelse */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+/* Hover-effekt (valgfrit) */
+.game-grid img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Responsivt antal kolonner */
+@media (min-width: 480px) {
+  .game-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .game-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+

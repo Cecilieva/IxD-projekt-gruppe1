@@ -87,3 +87,5 @@ function displayGames(games) {
     list.insertAdjacentHTML("beforeend", html);
   }
 }
+
+// denne kode er ikke færdig, jeg gør den færdig i VS Code for sig selv og sætter den ind senere. 

@@ -6,6 +6,7 @@
     <meta name="author" content="Ida, Emilia, Oliver & Cecilie" />
     <meta name="description" content="IXD Projekt" />
     <link rel="stylesheet" href="oversigt.css" /> 
+
     <title>Spilcafé Gruppe 1 Oversigt</title>
 </head>
  <body> 
@@ -40,8 +41,14 @@
     </button>
   </div>
 
+  <!-- Søgebar der vises når man klikker på søgeikonet -->
+  <div class="search-container" id="search-container">
+  <input type="text" id="search-input" placeholder="Søg efter spil..." class="search-input">
+</div>
+
+
   <div class="actions-right">
-    <button class="icon-inline" aria-label="Filter" id="btn-filter">
+    <button class="icon-inline" aria-label="Filter" id="btn-filter" onclick="window.location.href='filter.html'">
       <!-- Slider icon -->
       <svg width="44" height="20" viewBox="0 0 44 20" fill="none" stroke="currentColor">
         <line x1="2"  y1="6"  x2="42" y2="6"  stroke-width="2" stroke-linecap="round"/>
@@ -51,35 +58,74 @@
       </svg>
     </button>
 
-    <button class="icon-inline" aria-label="Menu" id="btn-menu">
+    <butt!on class="icon-inline" aria-label="Menu" id="btn-menu">
       <!-- menu ikon -->
       <svg width="36" height="22" viewBox="0 0 36 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
         <line x1="3" y1="4"  x2="33" y2="4"/>
         <line x1="3" y1="11" x2="33" y2="11"/>
         <line x1="3" y1="18" x2="33" y2="18"/>
       </svg>
-    </button>
+
+
+
+    </on>
   </div>
 </div>
 
-<script>
-  document.getElementById('btn-sort')  .addEventListener('click', () => console.log('Sorter!'));
-  document.getElementById('btn-search').addEventListener('click', () => console.log('Åbn søgning'));
-  document.getElementById('btn-filter').addEventListener('click', () => console.log('Åbn filter'));
-  document.getElementById('btn-menu')  .addEventListener('click', () => console.log('Åbn menu'));
-</script>
- 
+<!-- Karussel med spilbilleder -->
+<div class="carousel-container">
+  <div class="carousel" id="carousel">
+    <div class="carousel-slide">
+      <img src="images/Matador.png" alt="Matador spil">
+    </div>
+    <div class="carousel-slide">
+      <img src="images/UNO.png" alt="UNO spil">
+    </div>
+    <div class="carousel-slide">
+      <img src="images/Ludo.png" alt="Ludo spil">
+    </div>
+  </div>
+  <button class="carousel-btn prev" id="carousel-prev">‹</button>
+  <button class="carousel-btn next" id="carousel-next">›</button>
+</div>
+
+<!-- Første grid med billeder -->
+<section class="section">
+  <div class="section-head">
+    <span class="chip">Familie spil</span>
+    <span class="count">5</span>
+  </div>
+
+  <div class="game-grid">
+    <a href="images/Ludo.kort.png" target="_self">
+      <img src="images/Ludo.png" alt="Ludo">
+    </a>
+
+    <a href="images/Skærmbillede 2025-11-11 kl. 12.32.52.png" target="_self">
+      <img src="images/Sequence.png" alt="Sequence">
+    </a>
+
+    <a href="images/Partners.kort.png" target="_self">
+      <img src="images/Partners.png" alt="Partners">
+    </a>
+
+    <a href="images/Uno.kort.png" target="_self">
+      <img src="images/UNO.png"alt="Uno">
+    </a>
 
 
+<!-- Popup-overlay (skjult som standard) -->
+<div id="popup-overlay" class="popup-overlay">
+  <img id="popup-img" class="popup-img" src="" alt="">
+</div>
 
- <body>
-    
- </body></body>
+  </div>
+</section>
 
-    <footer>
-        <p>© 2025 Spilcafé Gruppe 1 </p>
-    </footer>
- </body>
+<footer>
+    <p>© 2025 Spilcafé Gruppe 1 </p>
+</footer>
 
-
- 
+<script src="oversigt.js"></script>
+</body>
+</html>
