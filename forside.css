@@ -24,38 +24,37 @@ margin: 0;
 }
 
 /* knap */
-.button-container {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem auto;
-    flex-direction: column;
-}
-
 .button-container button {
     background-color: #BF171C;
-    border: 1px;
-    border-color: white;
+    border: 2px solid white; 
     font-size: 14px;
     color: white;
     cursor: pointer;
     border-radius: 20px;
-    box-shadow:0 8px 16px 0 rgba(0,0,0,0.6);
-    width: 131px;
-    padding: 10px 20px;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,0.6);
+    width: 200px;
+    height: 40px;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem auto;
+    width: 200px;
+}
 
 
 /* Billede rækker øverst */
 .image-row1 {
     display: flex;
-    justify-content: center;
+    justify-content: center; 
     gap: 1rem;
     margin: 2rem auto;
     max-width: 1200px;
     padding: 0 1rem;
-}
+} 
 
 .image-row1 img {
     width: 20%;

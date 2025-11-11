@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ida, Emilia, Oliver & Cecilie" />
+    <meta name="description" content="IXD Projekt" />
+    <link rel="stylesheet" href="filter.css" /> 
+    <title>Spilcafé Gruppe 1 Filter</title>
+</head>
+ <body> 
+<div class="baggrund">
+    <img src="images/fadedbaggrund.png" alt="fadedbaggrund">
+</div> 
+
+    <header>
+      <h1>Spilguide</h1>
+    </header>
+
+    <main>
+      <!-- Filter bar med alle filtreringsmuligheder -->
+      <section class="filterbar">
+        <!-- Øverste række: Søg og genre -->
+        <div class="filter-row-main">
+          <div class="filter-group search-group">
+            <label for="search-input">Søg</label>
+            <input type="text" id="search-input" placeholder="Søg efter spil..." />
+          </div>
+
+<div class="filter-group">
+  <label for="genre-select">Genre</label>
+  <select id="genre-select">
+    <option value="all">Alle genrer</option>
+    <option value="kortspil">Kortspil</option>
+    <option value="braetspil">Brætspil</option>
+    <option value="quizspil">Quizspil</option>
+    <option value="puslespil">Puslespil</option>
+  </select>
+</div>
+
+<div class="filter-group">
+  <label for="players-select">Antal personer</label>
+  <select id="players-select">
+    <option value="all">Alle</option>
+    <option value="1-2">1-2 personer</option>
+    <option value="2-4">2-4 personer</option>
+    <option value="5+">5+ personer</option>
+  </select>
+</div>
+
+<div class="filter-group">
+  <label for="time-select">Hvor lang tid</label>
+  <select id="time-select">
+    <option value="all">Alle</option>
+    <option value="30min">30 min</option>
+    <option value="1h">1 time</option>
+    <option value="1.5h">1,5 timer</option>
+    <option value="2h">2 timer</option>
+  </select>
+</div>
+
+<div class="filter-group">
+  <label for="difficulty-select">Sværhedsgrad</label>
+  <select id="difficulty-select">
+    <option value="all">Alle</option>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+</div>
+
+              
+              <option value="rating">Alder på spillerne</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Nederste række: År og Rating ranges -->
+        <div class="filter-row-ranges">
+          <!-- År range filter -->
+          <div class="filter-group range-group">
+            <div class="range-inputs">
+              <input type="number" id="alder-from" placeholder="0" min="0" max="99" />
+              <span class="range-separator">→</span>
+              <input type="number" id="alder-to" placeholder="99" min="0" max="99" />
+            </div>
+          </div>
+    
+
+          <!-- Rating range filter -->
+          <div class="filter-group range-group">
+            <label class="range-label">Antal personer</label>
+            <div class="range-inputs">
+              <input type="number" id="personer-from" placeholder="0" min="0" max="10" step="1" />
+              <span class="range-separator">→</span>
+              <input type="number" id="personer-to" placeholder="10" min="0" max="10" step="1" />
+            </div>
+          </div>
+
+          <!-- Ryd alle filtre knap -->
+          <button id="clear-filters" class="clear-btn">
+            <span class="btn-icon">🗑️</span>
+            <span class="btn-text">Ryd filtre</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Movie grid -->
+      <section id="spil-liste" class="spil-grid">
+        <!-- Film vil blive indsat her dynamisk -->
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 Spilcafé Gruppe 1</p>
+    </footer>
+
+    <!-- Movie Detail Modal -->
+     <!--Ved ikke lige hvad dette bruges til-->
+    <dialog id="movie-dialog">
+      <form method="dialog">
+        <button id="close-dialog" aria-label="Close">✕</button>
+        <div id="dialog-content">
+          <!-- Movie details will be injected here via JavaScript -->
+        </div>
+      </form>
+    </dialog>
+
+    <script src="filter.js"></script>
+
+  </body>
+</html>

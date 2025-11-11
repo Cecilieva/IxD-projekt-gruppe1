@@ -1,0 +1,245 @@
+
+
+.baggrund {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.baggrund img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+
+/* =====================
+   FILTERBAR (SØG/SORT/FILTER)
+   ===================== */
+.filterbar {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(172, 198, 201, 0.1);
+}
+
+/* Filter rækker */
+.filter-row-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-row-ranges {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+/* Filter grupper */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+}
+
+/* Range grupper */
+.range-group {
+  flex: 1;
+}
+
+.range-label {
+  margin-bottom: 0.5rem;
+}
+
+.range-inputs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.range-separator {
+  color: var(--secondary);
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Input felter styling */
+#search-input,
+#genre-select,
+#sort-select,
+#year-from,
+#year-to,
+#rating-from,
+#rating-to {
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid rgba(172, 198, 201, 0.3);
+  border-radius: calc(var(--radius) * 0.5);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: var(--transition);
+  width: 100%;
+}
+
+#search-input:focus,
+#genre-select:focus,
+#sort-select:focus,
+#year-from:focus,
+#year-to:focus,
+#rating-from:focus,
+#rating-to:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(172, 198, 201, 0.2);
+}
+
+#search-input::placeholder,
+#year-from::placeholder,
+#year-to::placeholder,
+#rating-from::placeholder,
+#rating-to::placeholder {
+  color: var(--text-light);
+  opacity: 0.6;
+}
+
+#genre-select,
+#sort-select {
+  cursor: pointer;
+}
+
+/* Search group særlig styling */
+.search-group {
+  grid-column: 1 / 2;
+}
+
+/* =====================
+   CLEAR FILTERS BUTTON
+   ===================== */
+#clear-filters {
+  background: linear-gradient(135deg, var(--error) 0%, #c62828 100%);
+  color: white;
+  border: none;
+  border-radius: calc(var(--radius) * 0.5);
+  padding: 0.875rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: var(--transition);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  box-shadow: var(--shadow);
+}
+
+#clear-filters:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+}
+
+#clear-filters:active {
+  transform: translateY(0);
+}
+
+#clear-filters:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(234, 67, 53, 0.3);
+}
+
+.btn-icon {
+  font-size: 1.1rem;
+}
+
+.btn-text {
+  font-size: 0.95rem;
+}
+
+.no-results {
+  text-align: center;
+  color: var(--text-light);
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  padding: 2rem;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+}
+
+/* =====================
+   RESPONSIVE FILTERBAR
+   ===================== */
+@media (max-width: 900px) {
+  .filter-row-main {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .filter-row-ranges {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  #clear-filters {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .filterbar {
+    padding: 1rem;
+  }
+
+  .range-inputs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .range-separator {
+    transform: rotate(90deg);
+  }
+
+  #clear-filters {
+    padding: 1rem;
+    width: 100%;
+  }
+}
+
+/* =====================
+   RESPONSIVE & ACCESSIBILITY
+   ===================== */
+@media (max-width: 480px) {
+  #movie-list {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .movie-card {
+    max-width: 350px;
+    margin: 0 auto;
+  }
+  header h1 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Focus styles for keyboard navigation */
+.movie-card:focus-visible,
+#close-dialog:focus-visible {
+  outline: 3px solid var(--secondary);
+  outline-offset: 2px;
+}
