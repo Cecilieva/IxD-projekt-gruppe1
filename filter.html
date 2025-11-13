@@ -69,45 +69,49 @@
       </div>
 
       <div class="filter-group">
-        <label for="sort-select">Antal personer</label>
-        <select id="sort-select">
-          <option value="none">Ingen sortering</option>
-          <option value="title">1-2 personer </option>
-          <option value="title">2-4 personer </option>
-          <option value="title">5+ personer </option>
+        <label for="players-select">Antal personer</label>
+        <select id="players-select">
+          <option value="all">Alle</option>
+          <option value="1-2">1-2 personer</option>
+          <option value="3-4">3-4 personer</option>
+          <option value="5+">5+ personer</option>
         </select>
       </div>
 
       <div class="filter-group">
         <label for="time-select">Hvor lang tid</label>
         <select id="time-select">
-          <option value="none">Ingen sortering</option>
-          <option value="title">30 minutter </option>
-          <option value="title">1 time </option>
-          <option value="title">1,5 timer </option>
-          <option value="title">2 timer </option>
+          <option value="all">Alle</option>
+          <option value="0-30">Under 30 min</option>
+          <option value="30-60">30-60 min</option>
+          <option value="60-90">1-1,5 timer</option>
+          <option value="90+">Over 1,5 timer</option>
         </select>
       </div>
 
       <div class="filter-group">
         <label for="level-select">Sværhedsgrad</label>
         <select id="level-select">
-          <option value="none">Ingen sortering</option>
-          <option value="title">1 (let) </option>
-          <option value="title">2 </option>
-          <option value="title">3</option>
-          <option value="title">4 </option>
-          <option value="title">5 (svær) </option>
+          <option value="all">Alle</option>
+          <option value="Let">Let</option>
+          <option value="Mellem">Mellem</option>
+          <option value="Svær">Svær</option>
         </select>
       </div>
 
-      <button id="clear-filters" class="filter-btn-2">
-        Ryd 
-      </button>
+      <div class="filter-buttons">
+        <button id="back-btn" class="filter-btn-2" onclick="window.location.href='oversigt.html'">
+          ← Tilbage
+        </button>
 
-      <button id="anvend" class="filter-btn-2">
-        Anvend
-      </button>
+        <button id="clear-filters" class="filter-btn-2">
+          Ryd 
+        </button>
+
+        <button id="anvend" class="filter-btn-2">
+          Anvend
+        </button>
+      </div>
     </section>
 
     <section id="game-list" class="movie-grid">

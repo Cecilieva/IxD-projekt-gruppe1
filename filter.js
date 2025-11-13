@@ -10,14 +10,13 @@ async function initApp() {
     .querySelector("#genre-select")
     .addEventListener("change", filterGames);
   document
-    .querySelector("#sort-select")
-    .addEventListener("change", filterGames);
-
-  document
-    .querySelector("#time-select")
+    .querySelector("#players-select")
     .addEventListener("change", filterGames);
   document
     .querySelector("#time-select")
+    .addEventListener("change", filterGames);
+  document
+    .querySelector("#level-select")
     .addEventListener("change", filterGames);
   document
     .querySelector("#search-input")
@@ -25,6 +24,9 @@ async function initApp() {
   document
     .querySelector("#clear-filters")
     .addEventListener("click", clearAllFilters);
+  document
+    .querySelector("#anvend")
+    .addEventListener("click", filterGames);
   document.querySelector("#close-dialog").addEventListener("click", () => {
     document.querySelector("#game-dialog").close();
   });
@@ -98,27 +100,59 @@ function showGameModal(game) {
 function clearAllFilters() {
   document.querySelector("#search-input").value = "";
   document.querySelector("#genre-select").value = "all";
-  document.querySelector("#sort-select").value = "none";
-  document.querySelector("#time-select").value = "none";
-  document.querySelector("#level-select").value = "none";
+  document.querySelector("#players-select").value = "all";
+  document.querySelector("#time-select").value = "all";
+  document.querySelector("#level-select").value = "all";
   filterGames();
 }
 
 function filterGames() {
   const search = document.querySelector("#search-input").value.toLowerCase();
   const genre = document.querySelector("#genre-select").value;
-  const sort = document.querySelector("#sort-select").value;
+  const playersFilter = document.querySelector("#players-select").value;
+  const timeFilter = document.querySelector("#time-select").value;
+  const levelFilter = document.querySelector("#level-select").value;
 
   let filtered = allGames;
 
+  // Søgning
   if (search)
     filtered = filtered.filter((g) => g.title.toLowerCase().includes(search));
-  if (genre !== "all") filtered = filtered.filter((g) => g.genre === genre);
+  
+  // Genre filter
+  if (genre !== "all") 
+    filtered = filtered.filter((g) => g.genre === genre);
 
-  if (sort === "title") filtered.sort((a, b) => a.title.localeCompare(b.title));
-  else if (sort === "rating") filtered.sort((a, b) => b.rating - a.rating);
-  else if (sort === "playtime")
-    filtered.sort((a, b) => a.playtime - b.playtime);
+  // Antal spillere filter
+  if (playersFilter !== "all") {
+    filtered = filtered.filter((g) => {
+      const min = g.players.min;
+      const max = g.players.max;
+      
+      if (playersFilter === "1-2") return min <= 2 && max >= 1;
+      if (playersFilter === "3-4") return min <= 4 && max >= 3;
+      if (playersFilter === "5+") return max >= 5;
+      return true;
+    });
+  }
+
+  // Spilletid filter
+  if (timeFilter !== "all") {
+    filtered = filtered.filter((g) => {
+      const time = g.playtime;
+      
+      if (timeFilter === "0-30") return time <= 30;
+      if (timeFilter === "30-60") return time > 30 && time <= 60;
+      if (timeFilter === "60-90") return time > 60 && time <= 90;
+      if (timeFilter === "90+") return time > 90;
+      return true;
+    });
+  }
+
+  // Sværhedsgrad filter
+  if (levelFilter !== "all") {
+    filtered = filtered.filter((g) => g.difficulty === levelFilter);
+  }
 
   displayGames(filtered);
 }

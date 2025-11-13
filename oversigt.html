@@ -59,28 +59,43 @@
 <!-- Sortering overlay -->
 <div class="sortering-overlay" id="sortering-overlay">
   <button class="close-sortering" id="close-sortering">✕</button>
-  <img src="images/sortering.png" alt="Sortering" class="sortering-image">
+  <img src="images/roedfirkant.png" alt="Sortering" class="sortering-image">
+  
+  <a href="mestpopulaer.html" class="sortering-option option-1">
+    Mest populære
+  </a>
+  
+  <a href="sorter.html" class="sortering-option option-2">
+    A-Å
+  </a>
+  
+  <a href="" class="sortering-option option-3">
+    Å-A
+  </a>
+  
+
+</div> 
+
+<!-- Mest populære karussel -->
+<div class="section-head">
+  <span class="chip">Mest populære</span>
 </div>
 
-<!-- Karussel med spilbilleder -->
-
-<div class="section-head">
-    <span class="chip2">Mest populære</span>
-  </div>
-<div class="carousel-container">
-  <div class="carousel" id="carousel">
-    <div class="carousel-slide">
-      <img src="images/Matador.png" alt="Matador spil">
+<div class="featured-carousel">
+  <div class="featured-track" id="featured-track">
+    <div class="featured-slide">
+      <img src="images/nymatador.png" alt="Matador">
     </div>
-    <div class="carousel-slide">
-      <img src="images/UNO.png" alt="UNO spil">
+    <div class="featured-slide">
+      <img src="images/nyuno.png" alt="UNO">
     </div>
-    <div class="carousel-slide">
-      <img src="images/Ludo.png" alt="Ludo spil">
+    <div class="featured-slide">
+      <img src="images/nyludo.png" alt="Ludo">
     </div>
   </div>
-  <button class="carousel-btn prev" id="carousel-prev">‹</button>
-  <button class="carousel-btn next" id="carousel-next">›</button>
+  <button class="featured-btn prev" id="featured-prev">‹</button>
+  <button class="featured-btn next" id="featured-next">›</button>
+  <div class="featured-dots" id="featured-dots"></div>
 </div>
 
 <!-- Første grid med billeder -->
@@ -89,26 +104,8 @@
     <span class="chip">Familie spil</span>
   </div>
 
-  <div class="game-grid">
-    <a href="images/Ludo.kort.png" target="_self" class="game-card">
-      <img src="images/Ludo.png" alt="Ludo">
-      <span class="card-title">Ludo</span>
-    </a>
-
-    <a href="images/Skærmbillede 2025-11-11 kl. 12.32.52.png" target="_self" class="game-card">
-      <img src="images/Sequence.png" alt="Sequence">
-      <span class="card-title">Sequence</span>
-    </a>
-
-    <a href="images/Partners.kort.png" target="_self" class="game-card">
-      <img src="images/Partners.png" alt="Partners">
-      <span class="card-title">Partners</span>
-    </a>
-
-    <a href="images/Uno.kort.png" target="_self" class="game-card">
-      <img src="images/UNO.png" alt="Uno">
-      <span class="card-title">Uno</span>
-    </a>
+  <div class="game-grid" id="familie-spil-grid">
+    <!-- Spil indlæses fra JSON -->
   </div>
 </section>
 
@@ -118,26 +115,8 @@
     <span class="chip">Brætspil</span>
   </div>
 
-  <div class="game-grid">
-    <a href="images/matador.kort.png" target="_self" class="game-card">
-      <img src="images/Matador.png" alt="Matador">
-      <span class="card-title">Matador</span>
-    </a>
-
-    <a href="images/skak.png" target="_self" class="game-card">
-      <img src="images/skak.png" alt="Skak">
-      <span class="card-title">Skak</span>
-    </a>
-
-    <a href="images/yatzy.kort.png" target="_self" class="game-card">
-      <img src="images/yatzy.kort.png" alt="Yatzy">
-      <span class="card-title">Yatzy</span>
-    </a>
-
-    <a href="images/Uno.kort.png" target="_self" class="game-card">
-      <img src="images/UNO.png" alt="Uno">
-      <span class="card-title">Uno</span>
-    </a>
+  <div class="game-grid" id="braetspil-grid">
+    <!-- Spil indlæses fra JSON -->
   </div>
 </section>
 
@@ -146,6 +125,16 @@
   <div class="kort-overlay-content">
     <button class="close-kort" id="close-kort">✕</button>
     <img src="" alt="Spillekort" class="kort-image" id="kort-image">
+    <div class="kort-info">
+      <h2 id="kort-title"></h2>
+      <div class="kort-details">
+        <p><strong>Genre:</strong> <span id="kort-genre"></span></p>
+        <p><strong>Rating:</strong> <span id="kort-rating"></span> ⭐</p>
+        <p><strong>Spillere:</strong> <span id="kort-players"></span></p>
+        <p><strong>Spilletid:</strong> <span id="kort-playtime"></span></p>
+      </div>
+      <p class="kort-description" id="kort-description"></p>
+    </div>
   </div>
 </div>
 

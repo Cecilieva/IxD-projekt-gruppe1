@@ -1,5 +1,85 @@
 "use strict";
 
+// Indlæs spil fra JSON
+let allGames = [];
+
+async function loadGames() {
+  try {
+    const response = await fetch('./spil.json');
+    allGames = await response.json();
+    renderGameGrids();
+  } catch (error) {
+    console.error('Fejl ved indlæsning af spil:', error);
+  }
+}
+
+function renderGameGrids() {
+  // Familie spil
+  const familieGrid = document.querySelector('#familie-spil-grid');
+  const familieGames = allGames.filter(game => game.genre === 'Familie');
+  if (familieGrid) {
+    familieGrid.innerHTML = familieGames.map(game => `
+      <a href="#" class="game-card" data-id="${game.id}">
+        <div class="game-card-img-wrapper">
+          <img src="${game.image}" alt="${game.title}">
+          <span class="availability-badge ${game.available ? 'available' : 'unavailable'}">
+            ${game.available ? '✓' : '✕'}
+          </span>
+        </div>
+        <span class="card-title">${game.title}</span>
+      </a>
+    `).join('');
+  }
+  
+  // Brætspil
+  const braetspilGrid = document.querySelector('#braetspil-grid');
+  const braetspilGames = allGames.filter(game => game.genre === 'Brætspil' || game.genre === 'Strategi');
+  if (braetspilGrid) {
+    braetspilGrid.innerHTML = braetspilGames.map(game => `
+      <a href="#" class="game-card" data-id="${game.id}">
+        <div class="game-card-img-wrapper">
+          <img src="${game.image}" alt="${game.title}">
+          <span class="availability-badge ${game.available ? 'available' : 'unavailable'}">
+            ${game.available ? '✓' : '✕'}
+          </span>
+        </div>
+        <span class="card-title">${game.title}</span>
+      </a>
+    `).join('');
+  }
+  
+  // Tilføj click events
+  document.querySelectorAll('.game-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      e.preventDefault();
+      const gameId = this.getAttribute('data-id');
+      const game = allGames.find(g => g.id == gameId);
+      if (game) {
+        showGameOverlay(game);
+      }
+    });
+  });
+}
+
+function showGameOverlay(game) {
+  const kortOverlay = document.querySelector("#kort-overlay");
+  const kortImage = document.querySelector("#kort-image");
+  
+  if (kortImage && kortOverlay) {
+    kortImage.src = game.image;
+    document.querySelector("#kort-title").textContent = game.title;
+    document.querySelector("#kort-genre").textContent = game.genre;
+    document.querySelector("#kort-rating").textContent = game.rating;
+    document.querySelector("#kort-players").textContent = game.players;
+    document.querySelector("#kort-playtime").textContent = game.playtime;
+    document.querySelector("#kort-description").textContent = game.description;
+    kortOverlay.classList.add("show");
+  }
+}
+
+// Start indlæsning
+loadGames();
+
 function goToPage(location) {
   // Her sender vi bare brugeren videre til oversigten
   window.location.href = "filter.html";
@@ -59,66 +139,81 @@ document.addEventListener("keydown", function(event) {
   }
 });
 
-// Karussel funktionalitet
-const carousel = document.querySelector("#carousel");
-const prevBtn = document.querySelector("#carousel-prev");
-const nextBtn = document.querySelector("#carousel-next");
-const slides = document.querySelectorAll(".carousel-slide");
+// Featured karussel funktionalitet
+const featuredTrack = document.querySelector("#featured-track");
+const featuredPrevBtn = document.querySelector("#featured-prev");
+const featuredNextBtn = document.querySelector("#featured-next");
+const featuredSlides = document.querySelectorAll(".featured-slide");
+const dotsContainer = document.querySelector("#featured-dots");
 
-let currentSlide = 0;
-const totalSlides = slides.length;
+let currentFeaturedSlide = 0;
+const totalFeaturedSlides = featuredSlides.length;
 
-// Automatisk scroll hver 3. sekund
-let autoSlideInterval = setInterval(nextSlide, 3000);
-
-function updateCarousel() {
-  const slideWidth = carousel.offsetWidth;
-  carousel.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-  
-  // Fjern active class fra alle slides
-  slides.forEach(slide => slide.classList.remove('active'));
-  
-  // Tilføj active class til current slide
-  if (slides[currentSlide]) {
-    slides[currentSlide].classList.add('active');
+// Opret dots
+if (dotsContainer) {
+  for (let i = 0; i < totalFeaturedSlides; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
   }
 }
 
-function nextSlide() {
-  currentSlide = (currentSlide + 1) % totalSlides;
-  updateCarousel();
+const dots = document.querySelectorAll('.dot');
+
+// Automatisk scroll hver 4. sekund
+let autoFeaturedInterval = setInterval(nextFeaturedSlide, 4000);
+
+function updateFeaturedCarousel() {
+  if (featuredTrack) {
+    const slideWidth = featuredTrack.offsetWidth;
+    featuredTrack.style.transform = `translateX(-${currentFeaturedSlide * slideWidth}px)`;
+    
+    // Opdater dots
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentFeaturedSlide);
+    });
+  }
 }
 
-function prevSlide() {
-  currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-  updateCarousel();
+function nextFeaturedSlide() {
+  currentFeaturedSlide = (currentFeaturedSlide + 1) % totalFeaturedSlides;
+  updateFeaturedCarousel();
 }
 
-// Initialiser første slide som active
-if (slides.length > 0) {
-  slides[0].classList.add('active');
+function prevFeaturedSlide() {
+  currentFeaturedSlide = (currentFeaturedSlide - 1 + totalFeaturedSlides) % totalFeaturedSlides;
+  updateFeaturedCarousel();
+}
+
+function goToSlide(index) {
+  currentFeaturedSlide = index;
+  updateFeaturedCarousel();
+  clearInterval(autoFeaturedInterval);
+  autoFeaturedInterval = setInterval(nextFeaturedSlide, 4000);
 }
 
 // Klik på næste knap
-if (nextBtn) {
-  nextBtn.addEventListener("click", function() {
-    clearInterval(autoSlideInterval); // Stop auto-scroll når man klikker
-    nextSlide();
-    autoSlideInterval = setInterval(nextSlide, 3000); // Genstart auto-scroll
+if (featuredNextBtn) {
+  featuredNextBtn.addEventListener("click", function() {
+    clearInterval(autoFeaturedInterval);
+    nextFeaturedSlide();
+    autoFeaturedInterval = setInterval(nextFeaturedSlide, 4000);
   });
 }
 
 // Klik på forrige knap
-if (prevBtn) {
-  prevBtn.addEventListener("click", function() {
-    clearInterval(autoSlideInterval);
-    prevSlide();
-    autoSlideInterval = setInterval(nextSlide, 3000);
+if (featuredPrevBtn) {
+  featuredPrevBtn.addEventListener("click", function() {
+    clearInterval(autoFeaturedInterval);
+    prevFeaturedSlide();
+    autoFeaturedInterval = setInterval(nextFeaturedSlide, 4000);
   });
 }
 
 // Opdater karussel ved window resize
-window.addEventListener("resize", updateCarousel);
+window.addEventListener("resize", updateFeaturedCarousel);
 
 // Menu overlay funktionalitet
 const menuBtn = document.querySelector("#btn-menu");

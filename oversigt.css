@@ -224,19 +224,55 @@ header {
 .sortering-image {
   max-width: 300px;
   width: 100%;
-  height: auto;
+  height: 200px;
+  object-fit: fill;
   border-radius: 10px;
+}
+
+.sortering-option {
+  position: absolute;
+  width: 300px;
+  padding: 8px 15px;
+  text-align: center;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  z-index: 2002;
+}
+
+.sortering-option:hover {
+  background: rgba(191, 23, 28, 0.2);
+  transform: scale(1.05);
+}
+
+.option-1 {
+  top: 45px;
+  left: -40px;
+}
+
+.option-2 {
+  top: 100px;
+  left: -40px;
+}
+
+.option-3 {
+  top: 155px;
+  left: -40px;
 }
 
 .close-sortering {
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 15px;
   background: #BF171C;
   color: white;
   border: none;
   border-radius: 50%;
-  width: 30px;
+  width: 10px;
   height: 30px;
   font-size: 18px;
   cursor: pointer;
@@ -244,7 +280,7 @@ header {
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
-  z-index: 2001;
+  z-index: 2003;
 }
 
 .close-sortering:hover {
@@ -272,18 +308,59 @@ header {
 
 .kort-overlay-content {
   position: relative;
-  max-width: 90%;
+  max-width: 600px;
   max-height: 90%;
   background: #f9f1e0;
   border-radius: 20px;
-  padding: 20px;
+  padding: 30px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .kort-image {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 300px;
   border-radius: 15px;
   display: block;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.kort-info {
+  text-align: left;
+}
+
+.kort-info h2 {
+  color: #BF171C;
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.kort-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.kort-details p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.kort-details strong {
+  color: #BF171C;
+}
+
+.kort-description {
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+  margin-top: 10px;
 }
 
 .close-kort {
@@ -311,79 +388,98 @@ header {
   background: #9e1317;
 }
 
-/* Karussel */
-.carousel-container {
+/* Ny featured karussel */
+.featured-carousel {
   position: relative;
   max-width: 600px;
-  margin: 30px auto;
+  margin: 30px auto 50px;
   overflow: hidden;
-  padding: 40px 0;
+  padding: 20px 60px;
 }
 
-.carousel {
+.featured-track {
   display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.carousel-slide {
+.featured-slide {
   min-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  transition: all 0.5s ease;
 }
 
-.carousel-slide img {
+.featured-slide img {
   width: 100%;
-  max-width: 350px;
-  height: 350px;
-  object-fit: cover;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-  transform: scale(0.85);
-  opacity: 0.6;
+  max-width: 500px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
-/* Active slide (center) */
-.carousel-slide.active img {
-  transform: scale(1);
-  opacity: 1;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+.featured-slide img:hover {
+  transform: scale(1.02);
 }
 
-.carousel-btn {
+.featured-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(191, 23, 28, 0.8);
+  background: rgba(191, 23, 28, 0.9);
   color: white;
   border: none;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 30px;
+  width: 55px;
+  height: 55px;
+  font-size: 32px;
   cursor: pointer;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.3s ease, transform 0.2s ease;
-  margin-top: -20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.carousel-btn:hover {
+.featured-btn:hover {
   background: #BF171C;
-  transform: translateY(-50%) scale(1.1);
+  transform: translateY(-50%) scale(1.15);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
-.carousel-btn.prev {
+.featured-btn.prev {
   left: 10px;
 }
 
-.carousel-btn.next {
+.featured-btn.next {
   right: 10px;
+}
+
+.featured-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(191, 23, 28, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: #BF171C;
+  transform: scale(1.3);
+}
+
+.dot:hover {
+  background: rgba(191, 23, 28, 0.6);
 }
 
 /* Section container */
@@ -426,25 +522,74 @@ header {
   color: white;
 }
 
-/* Grid for game cards - fylder siden vandret */
+/* Grid for game cards - horizontal scroll */
 .game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 30px;
+  display: flex;
+  gap: 80px;
   padding: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.game-grid::-webkit-scrollbar {
+  height: 8px;
+}
+
+.game-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.game-grid::-webkit-scrollbar-thumb {
+  background: #BF171C;
+  border-radius: 10px;
+}
+
+.game-grid::-webkit-scrollbar-thumb:hover {
+  background: #9e1317;
 }
 
 /* Game cards */
 .game-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 12px;
-  box-shadow: 0 10px 10px rgba(0,0,0,0.15);
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-  cursor: pointer;
+  flex-shrink: 0;
+  width: 220px;
   text-decoration: none;
+  color: inherit;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s ease;
+}
+
+.game-card-img-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.availability-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.availability-badge.available {
+  background: #28a745;
+  color: white;
+}
+
+.availability-badge.unavailable {
+  background: #dc3545;
+  color: white;
 }
 
 .game-card:hover {
@@ -474,7 +619,7 @@ header {
 }
 
 /* =====================
-   Brætspil 
+   spil 
    ===================== */
 
 
