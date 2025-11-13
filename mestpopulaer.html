@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Ida, Emilia, Oliver & Cecilie" />
+    <meta name="description" content="IXD Projekt" />
+    <link rel="stylesheet" href="mestpopulaer.css" /> 
+
+    <title>Mest populære spil</title>
+</head>
+<body>
+    <!-- Baggrundsbillede -->
+<div class="baggrund">
+    <img src="images/fadedbaggrund.png" alt="fadedbaggrund">
+</div>
+<!-- logo -->
+<div class="logo">
+    <img src="images/Logoudenbg.png" alt="logo">
+</div>
+<!-- ACTIONS under logo -->
+<div class="actions">
+  <div class="actions-left">
+    <button class="icon-btn" aria-label="Pileknap" id="btn-pile">
+      <img src="images/pileknap.png" alt="Pileknap" class="icon-img">
+    </button>
+
+    <button class="icon-btn" aria-label="Søg" id="btn-search">
+      <img src="images/Search.ikon.png" alt="Søg" class="icon-img">
+    </button>
+  </div>
+
+  <!-- Søgebar der vises når man klikker på søgeikonet -->
+  <div class="search-container" id="search-container">
+    <input type="text" id="search-input" placeholder="Søg efter spil..." class="search-input">
+  </div>
+
+  <div class="actions-right">
+    <button class="icon-btn" aria-label="Filter" id="btn-filter" onclick="window.location.href='filter.html'">
+      <img src="images/filterknap.png" alt="Filter" class="icon-img">
+    </button>
+
+    <button class="icon-btn" aria-label="Menu" id="btn-menu">
+      <img src="images/menu.ikon.png" alt="Menu" class="icon-img">
+    </button>
+  </div>
+</div>
+
+<!-- Menu overlay -->
+<div class="menu-overlay" id="menu-overlay">
+  <button class="close-menu" id="close-menu">✕</button>
+  <img src="images/menu.png" alt="Menu" class="menu-image">
+</div>
+
+<!-- Sortering overlay -->
+<div class="sortering-overlay" id="sortering-overlay">
+  <button class="close-sortering" id="close-sortering">✕</button>
+  <img src="images/sortering.png" alt="Sortering" class="sortering-image">
+</div>
+
+<!-- Mest populære section -->
+<section class="section">
+  <div class="section-head">
+    <button class="back-btn" onclick="window.location.href='oversigt.html'" aria-label="Tilbage">←</button>
+    <span class="chip">Mest populære</span>
+  </div>
+
+  <div class="game-grid" id="game-grid">
+    <!-- Spil bliver indlæst fra JSON via JavaScript -->
+  </div>
+</section>
+
+<script src="mestpopulaer.js"></script>
+
+    <footer>
+        <p>© 2025 Spilcafé Gruppe 1 </p>
+    </footer>
+</body>
+</html>

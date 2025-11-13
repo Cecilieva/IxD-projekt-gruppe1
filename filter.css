@@ -1,4 +1,84 @@
+body {
+  .baggrund {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+}
+/* =====================
+   LAYOUT (main container)
+   ===================== */
+/* denne er til selve siden, men ændre også på lokations farve på selve kortet og border farven */
+main {
+  max-width: min(1400px, 95vw);
+  margin: 0 auto;
+  color: #000000;
+}
 
+/* selve kategorierne man kan søge på */
+/* Hver filter-gruppe */
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 180px;
+}
+
+/* Labels */
+.filter-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+  background-color: #bf171c;
+  width: fit-content;
+  padding: 8px;
+  margin: 10px 0 4px 0;
+  border-radius: 10px;
+}
+
+/* Inputs og selects */
+.filter-group input,
+.filter-group select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background-color: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Responsiv til mobil */
+@media (max-width: 600px) {
+  .filterbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+}
+
+/* =====================
+   HEADER & FOOTER
+   ===================== */
+
+
+body{
+  background-color: #F9F1E0;
+  font-family: 'poppins', Sans-serif; 
+  margin: 0;
+  color: white;
+}
+
+
+header {
+  color: white;
+  padding: 20px;
+}
 
 .baggrund {
   position: fixed;
@@ -14,171 +94,384 @@
   height: 100%;
   object-fit: cover;
   opacity: 0.2;
+} 
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px auto 10px;  /* mindre afstand til toppen */
+    width: 160px;           /* lidt mindre for mobilbalance */
+    z-index: 10;
 }
 
-
-/* =====================
-   FILTERBAR (SØG/SORT/FILTER)
-   ===================== */
-.filterbar {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(172, 198, 201, 0.1);
+.logo img {
+    width: 100%;
+    height: auto;
 }
 
-/* Filter rækker */
-.filter-row-main {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.filter-row-ranges {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 1rem;
-  align-items: end;
-}
-
-/* Filter grupper */
-.filter-group {
+.actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px auto 0;
+  max-width: 100%;  /* Begrænser bredden så ikonerne kommer tættere på midten */
+  position: relative;
 }
 
-.filter-group label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text);
+/* venstre to: runde, hvide knapper */
+.actions-left{ display:flex; gap:15px; }
+.icon-btn{
+  width:50px; height:50px; border:none; border-radius:999px;
+  background:#fff; color:#222; box-shadow:0 4px 12px rgba(0,0,0,.15);
+  display:grid; place-items:center; cursor:pointer;
+  transition:transform .08s ease, box-shadow .2s ease,2s;
+}
+
+.icon-btn:active{ transform:scale(.96); }
+.icon-btn:focus-visible{ outline:2px solid #000; outline-offset:2px; }
+.icon-btn:hover{ box-shadow:0 6px 16px rgba(0,0,0,.2); }
+
+/* Ikon billeder inde i knapperne */
+.icon-img {
+  width: 37px;
+  height: 37px;
+  object-fit: contain;
+}
+
+/* højre to: "inline" ikoner – ingen boble */
+.actions-right{ display:flex; align-items:center; gap:15px; color:#222; }
+.icon-inline{
+  background:transparent; border:none; padding:20px; cursor:pointer;
+  color:#222;
+}
+
+.icon-inline:focus-visible{ outline:10px solid #000; outline-offset:50px; }
+.icon-inline:active svg{ transform:scale(.98); }
+
+.search-area {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+/* Søgebar container */
+.search-container {
+  position: fixed;
+  top: 30px;
+  left: 60%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+  animation: slideDown 0.3s ease;
+}
+
+.search-input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid #1a1919;
+  border-radius: 50px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  background: white;
+  color: #222;
+}
+
+.search-input:focus {
+  box-shadow: 0 6px 16px rgba(42, 26, 27, 0.3);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.actions{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:10px 10px 0px;
+  position: relative;        /* vigtigt, så søgefeltet positioneres ift. actions */
+}
+
+/* skjult som default */
+.search-container{
+  position: absolute;
+  top: 10px;                 /* justér hvis den skal tættere på */
+ left: 330px;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 100;
+  display: none;
+}
+
+/* vises når vi klikker på 🔍 */
+.search-container.show{
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+/* Menu overlay */
+.menu-overlay {
+  display: none;
+  position: absolute;
+  top: 220px;
+  right: 10px;
+  z-index: 2000;
+  animation: slideDown 0.3s ease;
+}
+
+.menu-overlay.show {
   display: block;
 }
 
-/* Range grupper */
-.range-group {
-  flex: 1;
+.menu-image {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
 }
 
-.range-label {
-  margin-bottom: 0.5rem;
-}
-
-.range-inputs {
+.close-menu {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #BF171C;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  z-index: 2001;
 }
 
-.range-separator {
-  color: var(--secondary);
-  font-weight: bold;
-  font-size: 1.2rem;
+.close-menu:hover {
+  transform: scale(1.1);
+  background: #9e1317;
 }
 
-/* Input felter styling */
-#search-input,
-#genre-select,
-#sort-select,
-#year-from,
-#year-to,
-#rating-from,
-#rating-to {
-  background: var(--bg);
+footer {
+  background: var(--primary);
   color: var(--text);
-  border: 1px solid rgba(172, 198, 201, 0.3);
-  border-radius: calc(var(--radius) * 0.5);
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  transition: var(--transition);
-  width: 100%;
-}
-
-#search-input:focus,
-#genre-select:focus,
-#sort-select:focus,
-#year-from:focus,
-#year-to:focus,
-#rating-from:focus,
-#rating-to:focus {
-  outline: none;
-  border-color: var(--secondary);
-  box-shadow: 0 0 0 3px rgba(172, 198, 201, 0.2);
-}
-
-#search-input::placeholder,
-#year-from::placeholder,
-#year-to::placeholder,
-#rating-from::placeholder,
-#rating-to::placeholder {
-  color: var(--text-light);
-  opacity: 0.6;
-}
-
-#genre-select,
-#sort-select {
-  cursor: pointer;
-}
-
-/* Search group særlig styling */
-.search-group {
-  grid-column: 1 / 2;
+  text-align: center;
+  padding: 2rem 1rem;
+  margin-top: 4rem;
 }
 
 /* =====================
-   CLEAR FILTERS BUTTON
+   MOVIE GRID & CARDS
    ===================== */
-#clear-filters {
-  background: linear-gradient(135deg, var(--error) 0%, #c62828 100%);
-  color: white;
+/* farven på selve kortet til spillet */
+.movie-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.movie-card {
+  background: #f9f1e0;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  width: 400px;
+}
+.movie-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+/* billede af selve spillet */
+.movie-poster {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.movie-card:hover .movie-poster {
+  transform: scale(1.05);
+}
+/* tekstens placering på selve kortet */
+.movie-info {
+  padding: 1.5rem;
+}
+/* title farve på selve kortet */
+.movie-info h3 {
+  font-size: 20px;
+  color: #000000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+/* tiden på selve kortet */
+.movie-year {
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+}
+/* genre farven på selve kortet */
+.movie-genre {
+  color: #000000;
+  font-size: 14px;
+}
+/* rating farven på selve kortet */
+.movie-rating {
+  color: #000000;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+/* stjerne ikonet før rating */
+.movie-rating::before {
+  content: "⭐";
+}
+/* =====================
+   MOVIE DIALOG
+   ===================== */
+/* lukke knappens farve og position */
+#close-dialog {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #bf171c;
   border: none;
-  border-radius: calc(var(--radius) * 0.5);
-  padding: 0.875rem 1.5rem;
-  font-size: 0.95rem;
-  font-weight: 600;
-  transition: var(--transition);
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-  box-shadow: var(--shadow);
+  justify-content: center;
+  z-index: 10;
+}
+#close-dialog:hover {
+  background: black;
+  color: #bf171c;
+  transform: scale(1.1);
+}
+#dialog-content {
+  display: grid;
+  grid-template-columns: minmax(250px, 1fr) 2fr;
+  gap: 2rem;
+  overflow-y: auto;
+  max-height: 90vh;
+  background: #f9f1e0;
+  border-radius: 20px;
+  margin: 0;
+  padding: 2rem; /* ← dette giver luft inde i boksen */
+}
+
+@media (max-width: 768px) {
+  #dialog-content img.movie-poster {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}
+.dialog-details {
+  display: flex;
+  flex-direction: column;
+}
+/* overskriftens stil i popup boksen */
+#dialog-content h2 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 700;
+  color: rgb(0, 0, 0);
+  line-height: 1.2;
+  margin: 0 0 1rem 0;
+}
+
+/* tekst farven i popup boksen */
+#dialog-content p {
+  color: rgb(0, 0, 0);
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+}
+/* titel farven i popup boksen */
+#dialog-content p strong {
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+}
+
+dialog {
+  border: none;
+  padding: 0;
+  background: transparent; /* fjerner den hvide baggrund */
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6); /* valgfrit: mørk baggrund bag dialogen */
+}
+
+#dialog-content {
+  background: #f9f1e0;
+  border-radius: 20px; /* hvis du vil bevare det runde look */
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #dialog-content .movie-rating {
+    justify-content: center;
+  }
+}
+/* =====================
+   CLEAR FILTERS BUTTON
+   ===================== */
+/* her bør jeg kunne rette tekstens position på knappen */
+#clear-filters {
+  color: rgb(0, 0, 0);
+  background-color: transparent;
+  border-radius: 20px;
+  border: #bf171c 2px solid;
+  width: 134px;
+  height: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 10px 0 4px 0;
 }
 
 #clear-filters:hover {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-  background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.35);
 }
 
-#clear-filters:active {
-  transform: translateY(0);
+/* =====================
+   Anvend BUTTON
+   ===================== */
+#anvend {
+  color: rgb(255, 255, 255);
+  background-color: #bf171c;
+  border-radius: 20px;
+  border: #bf171c 2px solid;
+  width: 134px;
+  height: 40px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 10 px 0 50px 0;
 }
 
-#clear-filters:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(234, 67, 53, 0.3);
+#anvend:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.35);
 }
 
-.btn-icon {
-  font-size: 1.1rem;
-}
-
-.btn-text {
-  font-size: 0.95rem;
-}
-
-.no-results {
-  text-align: center;
-  color: var(--text-light);
-  font-size: 1.2rem;
-  margin: 2rem 0;
-  padding: 2rem;
-  background: var(--bg-card);
-  border-radius: var(--radius);
+.filter-btn-2 {
+  display: inline;
 }
 
 /* =====================
@@ -189,32 +482,30 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-
   .filter-row-ranges {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-
   #clear-filters {
     justify-content: center;
   }
 }
-
 @media (max-width: 600px) {
   .filterbar {
     padding: 1rem;
   }
-
   .range-inputs {
     flex-direction: column;
     gap: 0.5rem;
   }
-
   .range-separator {
     transform: rotate(90deg);
   }
-
   #clear-filters {
+    padding: 1rem;
+    width: 100%;
+  }
+  #anvend {
     padding: 1rem;
     width: 100%;
   }
@@ -236,7 +527,6 @@
     font-size: 1.75rem;
   }
 }
-
 /* Focus styles for keyboard navigation */
 .movie-card:focus-visible,
 #close-dialog:focus-visible {

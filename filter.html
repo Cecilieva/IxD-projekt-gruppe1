@@ -1,135 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Ida, Emilia, Oliver & Cecilie" />
-    <meta name="description" content="IXD Projekt" />
-    <link rel="stylesheet" href="filter.css" /> 
-    <title>Spilcafé Gruppe 1 Filter</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spilcafé Gruppe 1</title>
+  <link rel="stylesheet" href="filter.css" />
 </head>
- <body> 
+  <header>
+    <!-- vi skal ha sat logo og andre ikoner ind -->
+         <!-- Baggrundsbillede -->
 <div class="baggrund">
     <img src="images/fadedbaggrund.png" alt="fadedbaggrund">
 </div> 
 
-    <header>
-      <h1>Spilguide</h1>
-    </header>
-
-    <main>
-      <!-- Filter bar med alle filtreringsmuligheder -->
-      <section class="filterbar">
-        <!-- Øverste række: Søg og genre -->
-        <div class="filter-row-main">
-          <div class="filter-group search-group">
-            <label for="search-input">Søg</label>
-            <input type="text" id="search-input" placeholder="Søg efter spil..." />
-          </div>
-
-<div class="filter-group">
-  <label for="genre-select">Genre</label>
-  <select id="genre-select">
-    <option value="all">Alle genrer</option>
-    <option value="kortspil">Kortspil</option>
-    <option value="braetspil">Brætspil</option>
-    <option value="quizspil">Quizspil</option>
-    <option value="puslespil">Puslespil</option>
-  </select>
+<!-- logo -->
+<div class="logo">
+    <img src="images/Logoudenbg.png" alt="logo">
 </div>
 
-<div class="filter-group">
-  <label for="players-select">Antal personer</label>
-  <select id="players-select">
-    <option value="all">Alle</option>
-    <option value="1-2">1-2 personer</option>
-    <option value="2-4">2-4 personer</option>
-    <option value="5+">5+ personer</option>
-  </select>
+<!-- ACTIONS under logo -->
+<div class="actions">
+  <div class="actions-left">
+    <button class="icon-btn" aria-label="Pileknap" id="btn-pile">
+      <img src="images/pileknap.png" alt="Pileknap" class="icon-img">
+    </button>
+
+    <button class="icon-btn" aria-label="Søg" id="btn-search">
+      <img src="images/Search.ikon.png" alt="Søg" class="icon-img">
+    </button>
+  </div>
+
+  <!-- Søgebar der vises når man klikker på søgeikonet -->
+  <div class="search-container" id="search-container">
+  <input type="text" id="search-input-header" placeholder="Søg efter spil..." class="search-input">
 </div>
 
-<div class="filter-group">
-  <label for="time-select">Hvor lang tid</label>
-  <select id="time-select">
-    <option value="all">Alle</option>
-    <option value="30min">30 min</option>
-    <option value="1h">1 time</option>
-    <option value="1.5h">1,5 timer</option>
-    <option value="2h">2 timer</option>
-  </select>
+
+  <div class="actions-right">
+    <button class="icon-btn" aria-label="Filter" id="btn-filter" onclick="window.location.href='filter.html'">
+      <img src="images/filterknap.png" alt="Filter" class="icon-img">
+    </button>
+
+    <button class="icon-btn" aria-label="Menu" id="btn-menu">
+      <img src="images/menu.ikon.png" alt="Menu" class="icon-img">
+    </button>
+  </div>
 </div>
 
-<div class="filter-group">
-  <label for="difficulty-select">Sværhedsgrad</label>
-  <select id="difficulty-select">
-    <option value="all">Alle</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
+<!-- Menu overlay -->
+<div class="menu-overlay" id="menu-overlay">
+  <button class="close-menu" id="close-menu">✕</button>
+  <img src="images/menu.png" alt="Menu" class="menu-image">
 </div>
+  </header>
 
-              
-              <option value="rating">Alder på spillerne</option>
-            </select>
-          </div>
-        </div>
+  <main>
+    <section class="filterbar">
+      <div class="filter-group search-group">
+        <label for="search-input">Søg</label>
+        <input type="text" id="search-input" placeholder="Søg efter spil..." />
+      </div>
 
-        <!-- Nederste række: År og Rating ranges -->
-        <div class="filter-row-ranges">
-          <!-- År range filter -->
-          <div class="filter-group range-group">
-            <div class="range-inputs">
-              <input type="number" id="alder-from" placeholder="0" min="0" max="99" />
-              <span class="range-separator">→</span>
-              <input type="number" id="alder-to" placeholder="99" min="0" max="99" />
-            </div>
-          </div>
-    
+      <div class="filter-group">
+        <label for="genre-select">Genre</label>
+        <select id="genre-select">
+          <option value="all">Alle genrer</option>
+        </select>
+      </div>
 
-          <!-- Rating range filter -->
-          <div class="filter-group range-group">
-            <label class="range-label">Antal personer</label>
-            <div class="range-inputs">
-              <input type="number" id="personer-from" placeholder="0" min="0" max="10" step="1" />
-              <span class="range-separator">→</span>
-              <input type="number" id="personer-to" placeholder="10" min="0" max="10" step="1" />
-            </div>
-          </div>
+      <div class="filter-group">
+        <label for="sort-select">Antal personer</label>
+        <select id="sort-select">
+          <option value="none">Ingen sortering</option>
+          <option value="title">1-2 personer </option>
+          <option value="title">2-4 personer </option>
+          <option value="title">5+ personer </option>
+        </select>
+      </div>
 
-          <!-- Ryd alle filtre knap -->
-          <button id="clear-filters" class="clear-btn">
-            <span class="btn-icon">🗑️</span>
-            <span class="btn-text">Ryd filtre</span>
-          </button>
-        </div>
-      </section>
+      <div class="filter-group">
+        <label for="time-select">Hvor lang tid</label>
+        <select id="time-select">
+          <option value="none">Ingen sortering</option>
+          <option value="title">30 minutter </option>
+          <option value="title">1 time </option>
+          <option value="title">1,5 timer </option>
+          <option value="title">2 timer </option>
+        </select>
+      </div>
 
-      <!-- Movie grid -->
-      <section id="spil-liste" class="spil-grid">
-        <!-- Film vil blive indsat her dynamisk -->
-      </section>
-    </main>
+      <div class="filter-group">
+        <label for="level-select">Sværhedsgrad</label>
+        <select id="level-select">
+          <option value="none">Ingen sortering</option>
+          <option value="title">1 (let) </option>
+          <option value="title">2 </option>
+          <option value="title">3</option>
+          <option value="title">4 </option>
+          <option value="title">5 (svær) </option>
+        </select>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-      <p>© 2025 Spilcafé Gruppe 1</p>
-    </footer>
+      <button id="clear-filters" class="filter-btn-2">
+        Ryd 
+      </button>
 
-    <!-- Movie Detail Modal -->
-     <!--Ved ikke lige hvad dette bruges til-->
-    <dialog id="movie-dialog">
-      <form method="dialog">
-        <button id="close-dialog" aria-label="Close">✕</button>
-        <div id="dialog-content">
-          <!-- Movie details will be injected here via JavaScript -->
-        </div>
-      </form>
-    </dialog>
+      <button id="anvend" class="filter-btn-2">
+        Anvend
+      </button>
+    </section>
 
-    <script src="filter.js"></script>
+    <section id="game-list" class="movie-grid">
+      <!-- Spil vises her -->
+    </section>
+  </main>
 
-  </body>
+  <footer>
+    <p>© Spilcafé Gruppe 1</p>
+  </footer>
+
+  <dialog id="game-dialog">
+    <form method="dialog">
+      <button id="close-dialog" aria-label="Luk">✕</button>
+      <div id="dialog-content"></div>
+    </form>
+  </dialog>
+
+  <script src="filter.js"></script>
+</body>
 </html>

@@ -24,20 +24,12 @@
 <!-- ACTIONS under logo -->
 <div class="actions">
   <div class="actions-left">
-    <button class="icon-btn" aria-label="Sorter" id="btn-sort">
-      <!-- Up/Down (sort) -->
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path d="M7 3v14m0 0l-3-3m3 3l3-3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M17 21V7m0 0l-3 3m3-3l3 3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
+    <button class="icon-btn" aria-label="Pileknap" id="btn-pile">
+      <img src="images/pileknap.png" alt="Pileknap" class="icon-img">
     </button>
 
     <button class="icon-btn" aria-label="Søg" id="btn-search">
-      <!-- Magnifier -->
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <circle cx="11" cy="11" r="7" stroke-width="2"/>
-        <path d="M20 20l-3.5-3.5" stroke-width="2" stroke-linecap="round"/>
-      </svg>
+      <img src="images/Search.ikon.png" alt="Søg" class="icon-img">
     </button>
   </div>
 
@@ -48,31 +40,33 @@
 
 
   <div class="actions-right">
-    <button class="icon-inline" aria-label="Filter" id="btn-filter" onclick="window.location.href='filter.html'">
-      <!-- Slider icon -->
-      <svg width="44" height="20" viewBox="0 0 44 20" fill="none" stroke="currentColor">
-        <line x1="2"  y1="6"  x2="42" y2="6"  stroke-width="2" stroke-linecap="round"/>
-        <circle cx="28" cy="6" r="4"  fill="currentColor"/>
-        <line x1="2"  y1="14" x2="42" y2="14" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="16" cy="14" r="4" fill="currentColor"/>
-      </svg>
+    <button class="icon-btn" aria-label="Filter" id="btn-filter" onclick="window.location.href='filter.html'">
+      <img src="images/filterknap.png" alt="Filter" class="icon-img">
     </button>
 
-    <butt!on class="icon-inline" aria-label="Menu" id="btn-menu">
-      <!-- menu ikon -->
-      <svg width="36" height="22" viewBox="0 0 36 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
-        <line x1="3" y1="4"  x2="33" y2="4"/>
-        <line x1="3" y1="11" x2="33" y2="11"/>
-        <line x1="3" y1="18" x2="33" y2="18"/>
-      </svg>
-
-
-
-    </on>
+    <button class="icon-btn" aria-label="Menu" id="btn-menu">
+      <img src="images/menu.ikon.png" alt="Menu" class="icon-img">
+    </button>
   </div>
 </div>
 
+<!-- Menu overlay -->
+<div class="menu-overlay" id="menu-overlay">
+  <button class="close-menu" id="close-menu">✕</button>
+  <img src="images/menu.png" alt="Menu" class="menu-image">
+</div>
+
+<!-- Sortering overlay -->
+<div class="sortering-overlay" id="sortering-overlay">
+  <button class="close-sortering" id="close-sortering">✕</button>
+  <img src="images/sortering.png" alt="Sortering" class="sortering-image">
+</div>
+
 <!-- Karussel med spilbilleder -->
+
+<div class="section-head">
+    <span class="chip2">Mest populære</span>
+  </div>
 <div class="carousel-container">
   <div class="carousel" id="carousel">
     <div class="carousel-slide">
@@ -93,34 +87,67 @@
 <section class="section">
   <div class="section-head">
     <span class="chip">Familie spil</span>
-    <span class="count">5</span>
   </div>
 
   <div class="game-grid">
-    <a href="images/Ludo.kort.png" target="_self">
+    <a href="images/Ludo.kort.png" target="_self" class="game-card">
       <img src="images/Ludo.png" alt="Ludo">
+      <span class="card-title">Ludo</span>
     </a>
 
-    <a href="images/Skærmbillede 2025-11-11 kl. 12.32.52.png" target="_self">
+    <a href="images/Skærmbillede 2025-11-11 kl. 12.32.52.png" target="_self" class="game-card">
       <img src="images/Sequence.png" alt="Sequence">
+      <span class="card-title">Sequence</span>
     </a>
 
-    <a href="images/Partners.kort.png" target="_self">
+    <a href="images/Partners.kort.png" target="_self" class="game-card">
       <img src="images/Partners.png" alt="Partners">
+      <span class="card-title">Partners</span>
     </a>
 
-    <a href="images/Uno.kort.png" target="_self">
-      <img src="images/UNO.png"alt="Uno">
+    <a href="images/Uno.kort.png" target="_self" class="game-card">
+      <img src="images/UNO.png" alt="Uno">
+      <span class="card-title">Uno</span>
     </a>
-
-
-<!-- Popup-overlay (skjult som standard) -->
-<div id="popup-overlay" class="popup-overlay">
-  <img id="popup-img" class="popup-img" src="" alt="">
-</div>
-
   </div>
 </section>
+
+<!-- Brætspil section -->
+<section class="section">
+  <div class="section-head">
+    <span class="chip">Brætspil</span>
+  </div>
+
+  <div class="game-grid">
+    <a href="images/matador.kort.png" target="_self" class="game-card">
+      <img src="images/Matador.png" alt="Matador">
+      <span class="card-title">Matador</span>
+    </a>
+
+    <a href="images/skak.png" target="_self" class="game-card">
+      <img src="images/skak.png" alt="Skak">
+      <span class="card-title">Skak</span>
+    </a>
+
+    <a href="images/yatzy.kort.png" target="_self" class="game-card">
+      <img src="images/yatzy.kort.png" alt="Yatzy">
+      <span class="card-title">Yatzy</span>
+    </a>
+
+    <a href="images/Uno.kort.png" target="_self" class="game-card">
+      <img src="images/UNO.png" alt="Uno">
+      <span class="card-title">Uno</span>
+    </a>
+  </div>
+</section>
+
+<!-- Kort overlay -->
+<div class="kort-overlay" id="kort-overlay">
+  <div class="kort-overlay-content">
+    <button class="close-kort" id="close-kort">✕</button>
+    <img src="" alt="Spillekort" class="kort-image" id="kort-image">
+  </div>
+</div>
 
 <footer>
     <p>© 2025 Spilcafé Gruppe 1 </p>
